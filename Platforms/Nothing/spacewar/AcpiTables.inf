@@ -9,5 +9,11 @@
   ASL|DSDT.aml
   ASL|Common/SSDT.aml
   ASL|Kodiak/APIC.aml
+  ASL|Kodiak/CSRT.aml
+  ASL|Kodiak/DBG2.aml
   ASL|Kodiak/FACP.aml
   ASL|Kodiak/GTDT.aml
+  ASL|Kodiak/IORT.aml
+  ASL|Kodiak/MCFG.aml
+  ASL|Kodiak/PPTT.aml
+  ASL|Kodiak/SPCR.aml
