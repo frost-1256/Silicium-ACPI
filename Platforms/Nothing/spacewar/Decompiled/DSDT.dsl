@@ -12852,67 +12852,113 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
                 Return (RBUF) /* \_SB_.SP14._CRS.RBUF */
             }
 
-            Device (TSC1)
+        }
+
+        Device (TSC1)
+        {
+            Name (_HID, "FTSX3680")  // _HID: Hardware ID
+            Alias (\_SB.PSUB, _SUB)
+            Name (_UID, Zero)  // _UID: Unique ID
+            Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
-                Name (_HID, "FTSX3680")  // _HID: Hardware ID
-                Alias (\_SB.PSUB, _SUB)
-                Name (_UID, Zero)  // _UID: Unique ID
-                Name (_DEP, Package (0x03)  // _DEP: Dependencies
+                \_SB.PEP0, 
+                \_SB.GIO0, 
+                \_SB.SP14
+            })
+            Name (_STR, Unicode ("FocalTech FT3680 Touchscreen"))  // _STR: Description String
+            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+            {
+                Name (RBUF, ResourceTemplate ()
                 {
-                    \_SB.PEP0, 
-                    \_SB.GIO0, 
-                    \_SB.SP14
+                    SpiSerialBusV2 (0x0000, PolarityLow, FourWireMode, 0x08,
+                        ControllerInitiated, 0x005B8D80, ClockPolarityLow,
+                        ClockPhaseFirst, "\\_SB.SP14",
+                        0x00, ResourceConsumer, , Exclusive,
+                        )
+                    GpioInt (Edge, ActiveLow, Exclusive, PullUp, 0x0000,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0051
+                        }
+                    GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionOutputOnly,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0069
+                        }
+                    GpioIo (Exclusive, PullNone, 0x0000, 0x0000, IoRestrictionOutputOnly,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0034
+                        }
+                    GpioIo (Exclusive, PullNone, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0035
+                        }
+                    GpioIo (Exclusive, PullNone, 0x0000, 0x0000, IoRestrictionOutputOnly,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0036
+                        }
+                    GpioIo (Exclusive, PullNone, 0x0000, 0x0000, IoRestrictionOutputOnly,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0037
+                        }
                 })
-                Name (_STR, Unicode ("FocalTech FT3680 Touchscreen"))  // _STR: Description String
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+                Return (RBUF) /* \_SB_.TSC1._CRS.RBUF */
+            }
+            Name (PGID, Buffer (0x0A)
+            {
+                "\\_SB.TSC1"
+            })
+            Name (DBUF, Buffer (DBFL){})
+            CreateByteField (DBUF, Zero, STAT)
+            CreateByteField (DBUF, 0x02, DVAL)
+            CreateField (DBUF, 0x18, 0xA0, DEID)
+            Method (_S1D, 0, NotSerialized)
+            {
+                Return (0x03)
+            }
+
+            Method (_S2D, 0, NotSerialized)
+            {
+                Return (0x03)
+            }
+
+            Method (_S3D, 0, NotSerialized)
+            {
+                Return (0x03)
+            }
+
+            Method (_PS0, 0, NotSerialized)
+            {
+                DEID = Buffer (ESNL){}
+                DVAL = Zero
+                DEID = PGID /* \_SB_.TSC1.PGID */
+                If (\_SB.ABD.AVBL)
                 {
-                    Name (RBUF, ResourceTemplate ()
-                    {
-                        SpiSerialBusV2 (0x0000, PolarityLow, FourWireMode, 0x08,
-                            ControllerInitiated, 0x005B8D80, ClockPolarityLow,
-                            ClockPhaseFirst, "\\_SB.SP14",
-                            0x00, ResourceConsumer, , Exclusive,
-                            )
-                        GpioInt (Edge, ActiveLow, Exclusive, PullUp, 0x0000,
-                            "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                            )
-                            {   // Pin list
-                                0x0051
-                            }
-                        GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionOutputOnly,
-                            "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                            )
-                            {   // Pin list
-                                0x0069
-                            }
-                        GpioIo (Exclusive, PullNone, 0x0000, 0x0000, IoRestrictionOutputOnly,
-                            "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                            )
-                            {   // Pin list
-                                0x0034
-                            }
-                        GpioIo (Exclusive, PullNone, 0x0000, 0x0000, IoRestrictionInputOnly,
-                            "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                            )
-                            {   // Pin list
-                                0x0035
-                            }
-                        GpioIo (Exclusive, PullNone, 0x0000, 0x0000, IoRestrictionOutputOnly,
-                            "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                            )
-                            {   // Pin list
-                                0x0036
-                            }
-                        GpioIo (Exclusive, PullNone, 0x0000, 0x0000, IoRestrictionOutputOnly,
-                            "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                            )
-                            {   // Pin list
-                                0x0037
-                            }
-                    })
-                    Return (RBUF) /* \_SB_.SP14.TSC1._CRS.RBUF */
+                    \_SB.PEP0.FLD0 = DBUF /* \_SB_.TSC1.DBUF */
                 }
             }
+
+            Method (_PS3, 0, NotSerialized)
+            {
+                DEID = Buffer (ESNL){}
+                DVAL = 0x03
+                DEID = PGID /* \_SB_.TSC1.PGID */
+                If (\_SB.ABD.AVBL)
+                {
+                    \_SB.PEP0.FLD0 = DBUF /* \_SB_.TSC1.DBUF */
+                }
+            }
+
         }
 
         Device (RPEN)
