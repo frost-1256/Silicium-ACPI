@@ -12857,10 +12857,11 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
                 Name (_HID, "FTSX3680")  // _HID: Hardware ID
                 Alias (\_SB.PSUB, _SUB)
                 Name (_UID, Zero)  // _UID: Unique ID
-                Name (_DEP, Package (0x02)  // _DEP: Dependencies
+                Name (_DEP, Package (0x03)  // _DEP: Dependencies
                 {
                     \_SB.PEP0, 
-                    \_SB.GIO0
+                    \_SB.GIO0, 
+                    \_SB.SP14
                 })
                 Name (_STR, Unicode ("FocalTech FT3680 Touchscreen"))  // _STR: Description String
                 Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
