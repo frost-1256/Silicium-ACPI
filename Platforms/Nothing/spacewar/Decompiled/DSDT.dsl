@@ -12511,8 +12511,87 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
                 Return (LPXC) /* \_SB_.PEP0.LPXC */
             }
 
-            Name (LPXC, Package (Zero) {})  /* spacewar v1: sole entry was the \_SB.TSC1 power sequence (PMIC LDO7_C vote +
-               TLMM GPIO 0x51), removed together with the Samsung touch controller. */
+            Name (LPXC, Package (0x01)
+            {
+                Package (0x04)
+                {
+                    "DEVICE",
+                    "\\_SB.TSC1",
+                    Package (0x04)
+                    {
+                        "DSTATE",
+                        Zero,
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE",
+                            Package (0x08)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C",
+                                One,
+                                0x002AB980,
+                                One,
+                                0x07,
+                                Zero,
+                                "HLOS_DRV",
+                                "REQUIRED"
+                            }
+                        },
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE",
+                            Package (0x08)
+                            {
+                                "PPP_RESOURCE_ID_LDO8_C",
+                                One,
+                                0x001B7740,
+                                One,
+                                0x07,
+                                Zero,
+                                "HLOS_DRV",
+                                "REQUIRED"
+                            }
+                        }
+                    },
+
+                    Package (0x04)
+                    {
+                        "DSTATE",
+                        0x03,
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE",
+                            Package (0x08)
+                            {
+                                "PPP_RESOURCE_ID_LDO8_C",
+                                One,
+                                Zero,
+                                Zero,
+                                0x05,
+                                Zero,
+                                "HLOS_DRV",
+                                "REQUIRED"
+                            }
+                        },
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE",
+                            Package (0x08)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C",
+                                One,
+                                Zero,
+                                Zero,
+                                0x05,
+                                Zero,
+                                "HLOS_DRV",
+                                "REQUIRED"
+                            }
+                        }
+                    }
+                }
+            })
         }
 
         Device (BAM1)
