@@ -12997,18 +12997,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
         Device (ADSP)
         {
-            Name (_DEP, Package (0x09)  // _DEP: Dependencies
-            {
-                \_SB.PEP0, 
-                \_SB.PILC, 
-                \_SB.GLNK, 
-                \_SB.IPC0, 
-                \_SB.RPEN, 
-                \_SB.SSDD, 
-                \_SB.ARPC, 
-                \_SB.TFTP, 
-                \_SB.PDSR
-            })
             Name (_HID, "QCOM0A1B")  // _HID: Hardware ID
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -13188,18 +13176,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
         Device (AMSS)
         {
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
-            Name (_DEP, Package (0x09)  // _DEP: Dependencies
-            {
-                \_SB.PEP0, 
-                \_SB.GLNK, 
-                \_SB.PILC, 
-                \_SB.RFS0, 
-                \_SB.RPEN, 
-                \_SB.SSDD, 
-                \_SB.IPC0, 
-                \_SB.TFTP, 
-                \_SB.PDSR
-            })
             Name (_HID, "QCOM0A1C")  // _HID: Hardware ID
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
@@ -13218,13 +13194,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
         {
             Name (_HID, "QCOM0A1E")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
-            Name (_DEP, Package (0x04)  // _DEP: Dependencies
-            {
-                \_SB.GLNK, 
-                \_SB.IPC0, 
-                \_SB.PILC, 
-                \_SB.RPEN
-            })
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
                 Return (0x0F)
@@ -13249,12 +13218,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
         {
             Name (_HID, "QCOM06DF")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
-            Name (_DEP, Package (0x03)  // _DEP: Dependencies
-            {
-                \_SB.PEP0, 
-                \_SB.GLNK, 
-                \_SB.IPC0
-            })
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
                 Return (0x0F)
@@ -13263,17 +13226,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
         Device (NSP0)
         {
-            Name (_DEP, Package (0x08)  // _DEP: Dependencies
-            {
-                \_SB.PEP0, 
-                \_SB.PILC, 
-                \_SB.GLNK, 
-                \_SB.IPC0, 
-                \_SB.RPEN, 
-                \_SB.SSDD, 
-                \_SB.ARPC, 
-                \_SB.PDSR
-            })
             Name (_HID, "QCOM0AB0")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
@@ -13296,17 +13248,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
         Device (WPSS)
         {
-            Name (_DEP, Package (0x08)  // _DEP: Dependencies
-            {
-                \_SB.PEP0, 
-                \_SB.PILC, 
-                \_SB.GLNK, 
-                \_SB.IPC0, 
-                \_SB.RPEN, 
-                \_SB.SSDD, 
-                \_SB.TFTP, 
-                \_SB.PDSR
-            })
             Name (_HID, "QCOM0AE2")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
@@ -13549,10 +13490,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
         {
             Name (_HID, "QCOM06DC")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
-            Name (_DEP, Package (One)  // _DEP: Dependencies
-            {
-                \_SB.IPC0
-            })
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
                 Return (0x0F)
@@ -13668,10 +13605,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
             Name (_UID, Zero)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Alias (\_SB.SVMJ, _HRV)
-            Name (_DEP, Package (One)  // _DEP: Dependencies
-            {
-                \_SB.PEP0
-            })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
                 Return (ResourceTemplate ()
@@ -13950,10 +13883,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
             Name (_UID, One)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Alias (\_SB.SVMJ, _HRV)
-            Name (_DEP, Package (0x01)  // _DEP: Dependencies
-            {
-                \_SB.PEP0
-            })
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
                 Return (0x0F)
