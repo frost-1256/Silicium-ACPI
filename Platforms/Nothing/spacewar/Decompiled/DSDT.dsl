@@ -355,11 +355,17 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
             Name (_UID, Zero)  // _UID: Unique ID
             OperationRegion (ROP1, GenericSerialBus, Zero, 0x0100)
             Name (AVBL, Zero)
+            Name (RDY, Zero)
             Method (_REG, 2, NotSerialized)  // _REG: Region Availability
             {
                 If ((Arg0 == 0x09))
                 {
                     AVBL = Arg1
+                    If ((Arg1 == One) && (RDY == Zero))
+                    {
+                        RDY = One
+                        \_SB.TSC1.NTFY (Zero)
+                    }
                 }
             }
         }
@@ -13001,6 +13007,17 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
             CreateByteField (DBUF, Zero, STAT)
             CreateByteField (DBUF, 0x02, DVAL)
             CreateField (DBUF, 0x18, 0xA0, DEID)
+            Method (NTFY, 1, NotSerialized)
+            {
+                DEID = Buffer (ESNL){}
+                DVAL = Arg0
+                DEID = PGID /* \_SB_.TSC1.PGID */
+                If (\_SB.ABD.AVBL)
+                {
+                    \_SB.PEP0.FLD0 = DBUF /* \_SB_.TSC1.DBUF */
+                }
+            }
+
             Method (_S1D, 0, NotSerialized)
             {
                 Return (0x03)
@@ -13018,24 +13035,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
             Method (_PS0, 0, NotSerialized)
             {
-                DEID = Buffer (ESNL){}
-                DVAL = Zero
-                DEID = PGID /* \_SB_.TSC1.PGID */
-                If (\_SB.ABD.AVBL)
-                {
-                    \_SB.PEP0.FLD0 = DBUF /* \_SB_.TSC1.DBUF */
-                }
+                NTFY (Zero)
             }
 
             Method (_PS3, 0, NotSerialized)
             {
-                DEID = Buffer (ESNL){}
-                DVAL = 0x03
-                DEID = PGID /* \_SB_.TSC1.PGID */
-                If (\_SB.ABD.AVBL)
-                {
-                    \_SB.PEP0.FLD0 = DBUF /* \_SB_.TSC1.DBUF */
-                }
+                NTFY (0x03)
             }
 
         }
