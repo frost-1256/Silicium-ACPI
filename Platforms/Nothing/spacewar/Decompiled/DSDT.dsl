@@ -13983,7 +13983,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
                 }
             }
 
-            Name (_DEP, Package (0x09)  // _DEP: Dependencies
+            Name (_DEP, Package (0x08)  // _DEP: Dependencies
             {
                 \_SB.MMU0, 
                 \_SB.MMU1, 
@@ -13991,7 +13991,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
                 \_SB.IMM1, 
                 \_SB.PEP0, 
                 \_SB.PMIC, 
-                \_SB.PILC, 
                 \_SB.RPEN, 
                 \_SB.SCM0
             })
@@ -15821,13 +15820,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
         Device (IPA)
         {
-            Name (_DEP, Package (0x05)  // _DEP: Dependencies
+            Name (_DEP, Package (0x04)  // _DEP: Dependencies
             {
                 \_SB.PEP0, 
                 \_SB.RPEN, 
                 \_SB.MMU0, 
-                \_SB.GLNK, 
-                \_SB.IPC0
+                \_SB.GLNK
             })
             Name (_HID, "QCOM0A6A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
