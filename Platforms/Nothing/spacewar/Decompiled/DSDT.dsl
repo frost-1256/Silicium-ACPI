@@ -13983,7 +13983,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
                 }
             }
 
-            Name (_DEP, Package (0x0A)  // _DEP: Dependencies
+            Name (_DEP, Package (0x09)  // _DEP: Dependencies
             {
                 \_SB.MMU0, 
                 \_SB.MMU1, 
@@ -13993,7 +13993,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
                 \_SB.PMIC, 
                 \_SB.PILC, 
                 \_SB.RPEN, 
-                \_SB.TREE, 
                 \_SB.SCM0
             })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -15062,7 +15061,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
             Name (_UID, Zero)  // _UID: Unique ID
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                Return (0x0F)
+                Return (Zero)
             }
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
@@ -15822,11 +15821,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
         Device (IPA)
         {
-            Name (_DEP, Package (0x06)  // _DEP: Dependencies
+            Name (_DEP, Package (0x05)  // _DEP: Dependencies
             {
                 \_SB.PEP0, 
                 \_SB.RPEN, 
-                \_SB.TREE, 
                 \_SB.MMU0, 
                 \_SB.GLNK, 
                 \_SB.IPC0
