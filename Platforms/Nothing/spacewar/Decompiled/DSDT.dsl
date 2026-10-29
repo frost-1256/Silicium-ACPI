@@ -12519,7 +12519,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
             Name (LPXC, Package (0x01)
             {
-                Package (0x04)
+                Package (0x03)
                 {
                     "DEVICE",
                     "\\_SB.TSC1",
@@ -12560,42 +12560,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
                         }
                     },
 
-                    Package (0x04)
-                    {
-                        "DSTATE",
-                        0x03,
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE",
-                            Package (0x08)
-                            {
-                                "PPP_RESOURCE_ID_LDO8_C",
-                                One,
-                                Zero,
-                                Zero,
-                                0x05,
-                                Zero,
-                                "HLOS_DRV",
-                                "REQUIRED"
-                            }
-                        },
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE",
-                            Package (0x08)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_C",
-                                One,
-                                Zero,
-                                Zero,
-                                0x05,
-                                Zero,
-                                "HLOS_DRV",
-                                "REQUIRED"
-                            }
-                        }
-                    }
                 }
             })
         }
