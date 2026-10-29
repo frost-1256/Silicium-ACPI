@@ -13045,6 +13045,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
         }
 
+        Device (TSCP)
+        {
+            Name (_HID, "QCOM0AF0")  // _HID: Hardware ID
+            Name (_UID, Zero)  // _UID: Unique ID
+            Name (_DEP, Package (0x01)  // _DEP: Dependencies
+            {
+                \_SB.PEP0
+            })
+            Name (_STR, Unicode ("FT3680 Touch Rail Keeper"))  // _STR: Description String
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                Return (0x0F)
+            }
+
+            Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+            {
+            })
+        }
+
+
         Device (RPEN)
         {
             Name (_HID, "QCOM06E1")  // _HID: Hardware ID
