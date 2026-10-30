@@ -13004,7 +13004,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
             Method (_PS3, 0, NotSerialized)
             {
-                NTFY (0x03)
             }
 
         }
