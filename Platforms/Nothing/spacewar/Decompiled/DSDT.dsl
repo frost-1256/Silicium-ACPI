@@ -236,8 +236,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
         Name (RFMS, 0xDDDDDDDD)
         Name (RFAB, 0xEEEEEEEE)
         Name (RFAS, 0x77777777)
-        Name (TCMA, 0xDEADBEEF)
-        Name (TCML, 0xBEEFDEAD)
+        Name (TCMA, 0xCE500000)
+        Name (TCML, 0x01400000)
         Name (SOSI, 0xDEADBEEFFFFFFFFF)
         Name (PRP1, 0xFFFFFFFF)
         Name (SKUV, 0xFFFFFFFF)
@@ -12919,10 +12919,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
             {
                 Name (RBUF, ResourceTemplate ()
                 {
-                    SpiSerialBusV2 (0x0000, PolarityLow, FourWireMode, 0x08,
+                    /* V1 macro on purpose: same SerialBus RevisionID reason as BTH0 below.
+                       iasl emits RevisionID 2 for the V2 macros; V1 gives 1 (same as MSFT asl). */
+                    SpiSerialBus (0x0000, PolarityLow, FourWireMode, 0x08,
                         ControllerInitiated, 0x005B8D80, ClockPolarityLow,
                         ClockPhaseFirst, "\\_SB.SP14",
-                        0x00, ResourceConsumer, , Exclusive,
+                        0x00, ResourceConsumer, ,
                         )
                     GpioInt (Edge, ActiveLow, Exclusive, PullUp, 0x0000,
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
@@ -15133,18 +15135,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
             Name (_UID, Zero)  // _UID: Unique ID
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                Return (Zero)
+                Return (0x0F)
             }
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
                 Name (RBUF, ResourceTemplate ()
                 {
-                    GpioInt (Edge, ActiveLow, Exclusive, PullUp, 0x0000,
-                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                        )
-                        {   // Pin list
-                            0x0088
-                        }
                     Memory32Fixed (ReadWrite,
                         0xDEADBEEF,         // Address Base
                         0xBEEFDEAD,         // Address Length
@@ -21161,10 +21157,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
             {
                 Name (PBUF, ResourceTemplate ()
                 {
-                    UartSerialBusV2 (0x0001C200, DataBitsEight, StopBitsOne,
+                    /* V1 macro on purpose: qcuart7325 rejects SerialBus RevisionID != 1.
+                       iasl emits RevisionID 2 for the V2 macros; V1 gives 1 (same as MSFT asl). */
+                    UartSerialBus (0x0001C200, DataBitsEight, StopBitsOne,
                         0xC0, LittleEndian, ParityTypeNone, FlowControlHardware,
                         0x0020, 0x0020, "\\_SB.UAR8",
-                        0x00, ResourceConsumer, , Exclusive,
+                        0x00, ResourceConsumer, ,
                         )
                     GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionNone,
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
