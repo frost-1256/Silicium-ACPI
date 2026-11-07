@@ -13317,6 +13317,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
         Device (WPSS)
         {
+            Name (_DEP, Package (One)  // _DEP: Dependencies (wait for SSDD QMI init)
+            {
+                \_SB.SSDD
+            })
             Name (_HID, "QCOM0AE2")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
