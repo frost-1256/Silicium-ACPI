@@ -16038,10 +16038,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
         Device (GLNK)
         {
-            Name (_DEP, Package (0x02)  // _DEP: Dependencies
+            Name (_DEP, Package (0x01)  // _DEP: Dependencies (v31: RPEN removed)
             {
-                \_SB.IPCC, 
-                \_SB.RPEN
+                \_SB.IPCC
             })
             Name (_HID, "QCOM0A84")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
