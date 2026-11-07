@@ -14041,7 +14041,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
 
         Device (GPU0)
         {
-            Name (_HID, "QCOM0A36")  // _HID: Hardware ID
+            Name (_HID, "AKAT0001")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_CLS, Package (0x03)  // _CLS: Class Code
