@@ -13966,7 +13966,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
             })
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                Return (0x0F)
+                Return (Zero)
             }
 
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -14035,7 +14035,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
             Name (_UID, One)  // _UID: Unique ID
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                Return (0x0F)
+                Return (Zero)
             }
         }
 
@@ -14056,12 +14056,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM7280 ", 0x00000003)
                 }
             }
 
-            Name (_DEP, Package (0x08)  // _DEP: Dependencies
+            Name (_DEP, Package (0x06)  // _DEP: Dependencies
             {
                 \_SB.MMU0, 
-                \_SB.MMU1, 
                 \_SB.IMM0, 
-                \_SB.IMM1, 
                 \_SB.PEP0, 
                 \_SB.PMIC, 
                 \_SB.RPEN, 
